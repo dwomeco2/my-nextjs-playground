@@ -13,7 +13,8 @@ const config = {
 	bracketSameLine: false,
 	plugins: ["prettier-plugin-organize-imports", "prettier-plugin-tailwindcss"],
 	pluginSearchDirs: false,
-	tailwindConfig: './tailwind.config.ts',
+	tailwindConfig: "./tailwind.config.ts",
+	organizeImportsSkipDestructiveCodeActions: true
 }
 
 module.exports = config

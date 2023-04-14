@@ -1,3 +1,86 @@
+@import "./colar.css";
+@import "./layout.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+	/* Chrome, Safari and Opera */
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+
+	.absolute-center-xy {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		@apply -translate-x-1/2;
+		@apply -translate-y-1/2;
+	}
+
+	.absolute-center-y {
+		position: absolute;
+		top: 50%;
+		@apply -translate-y-1/2;
+	}
+
+	.flex-center-xy {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.reset-input {
+		border-color: transparent;
+	}
+	.reset-input:focus {
+		border-color: transparent;
+		@apply ring-0;
+		@apply outline-0;
+	}
+
+	.cbtn {
+		@apply rounded-full;
+		@apply py-2;
+		@apply px-8;
+		@apply text-white;
+		@apply transition;
+		@apply border-none;
+	}
+
+	.cbtn-primary {
+		@apply bg-sky-500;
+		@apply hover:bg-sky-700;
+		@apply active:bg-violet-300;
+	}
+
+	.cbtn-secondary {
+		@apply bg-violet-500;
+		@apply hover:bg-violet-700;
+		@apply active:bg-violet-300;
+	}
+
+	.cbtn-primary.cbtn-invert {
+		@apply text-sky-500;
+		@apply border;
+		@apply border-sky-500;
+		@apply bg-white;
+		@apply hover:bg-sky-700;
+		@apply hover:text-white;
+	}
+
+	.cbtn-secondary.cbtn-invert {
+		@apply text-violet-500;
+		@apply border;
+		@apply border-violet-500;
+		@apply bg-white;
+		@apply hover:bg-violet-700;
+		@apply hover:text-white;
+	}
+}

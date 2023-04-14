@@ -1,0 +1,52 @@
+.menu-text:hover {
+	filter: brightness(120%);
+}
+
+.menu-text {
+	background: linear-gradient(90deg, #e6fd81, #f87697);
+	background-attachment: fixed;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-weight: 600;
+}
+
+.masked-overflow {
+	/* scroll bar width, for use in mask calculations */
+	--scrollbar-width: 0px;
+
+	/* mask fade distance, for use in mask calculations */
+	--mask-height: 80px;
+
+	/* Need to make sure container has bottom space,
+otherwise content at the bottom is always faded out */
+	padding-left: var(--mask-height);
+	padding-right: var(--mask-height);
+
+	/* The content mask is a linear gradient from top to bottom */
+	--mask-image-content: linear-gradient(
+		to left,
+		transparent,
+		black var(--mask-height),
+		black calc(100% - var(--mask-height)),
+		transparent
+	);
+
+	/* Here we scale the content gradient to the width of the container 
+minus the scrollbar width. The height is the full container height */
+	--mask-size-content: calc(100% - var(--scrollbar-width)) 100%;
+
+	/* The scrollbar mask is a black pixel */
+	--mask-image-scrollbar: linear-gradient(black, black);
+
+	/* The width of our black pixel is the width of the scrollbar.
+The height is the full container height */
+	--mask-size-scrollbar: var(--scrollbar-width) 100%;
+
+	/* Apply the mask image and mask size variables */
+	mask-image: var(--mask-image-content), var(--mask-image-scrollbar);
+	mask-size: var(--mask-size-content), var(--mask-size-scrollbar);
+
+	/* We don't repeat our mask images */
+	mask-repeat: no-repeat, no-repeat;
+}

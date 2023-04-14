@@ -9,6 +9,7 @@ specifiers:
   '@types/prettier': ^2.7.2
   '@types/react': ^18.0.28
   '@types/react-dom': ^18.0.11
+  '@types/react-portal': ^4.0.4
   '@typescript-eslint/eslint-plugin': ^5.56.0
   '@typescript-eslint/parser': ^5.56.0
   autoprefixer: ^10.4.14
@@ -34,6 +35,7 @@ specifiers:
   react-error-boundary: ^4.0.3
   react-icons: ^4.8.0
   react-image: ^4.1.0
+  react-portal: ^4.2.2
   react-swipeable: ^7.0.0
   react-transition-group: ^4.4.5
   tailwindcss: ^3.3.0
@@ -57,6 +59,7 @@ dependencies:
   react-error-boundary: 4.0.3_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
   react-image: 4.1.0_kv6kfe5rukjmpsrokr5t7up7oi
+  react-portal: 4.2.2_biqbaboplfbrettd7655fr4n2y
   react-swipeable: 7.0.0_react@18.2.0
   react-transition-group: 4.4.5_biqbaboplfbrettd7655fr4n2y
   zod: 3.21.4
@@ -67,6 +70,7 @@ devDependencies:
   '@types/prettier': 2.7.2
   '@types/react': 18.0.35
   '@types/react-dom': 18.0.11
+  '@types/react-portal': 4.0.4
   '@typescript-eslint/eslint-plugin': 5.58.0_gjoxkwycl3ml7yxlw3iuo7gyna
   '@typescript-eslint/parser': 5.58.0_voubu7prgxjfsfbgx5d4sqnwiy
   autoprefixer: 10.4.14_postcss@8.4.21
@@ -775,6 +779,12 @@ packages:
 
   /@types/react-dom/18.0.11:
     resolution: {integrity: sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==}
+    dependencies:
+      '@types/react': 18.0.35
+    dev: true
+
+  /@types/react-portal/4.0.4:
+    resolution: {integrity: sha512-ecVWngYHeSymq5XdrQOXRpIb9ay5SM4Stm/ur6+wc0Z+r05gafZ5SuMRbXKYsj4exNJa+4CTKK6J7qcTKm9K5g==}
     dependencies:
       '@types/react': 18.0.35
     dev: true
@@ -3287,6 +3297,17 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+
+  /react-portal/4.2.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-vS18idTmevQxyQpnde0Td6ZcUlv+pD8GTyR42n3CHUQq9OHi1C4jDE4ZWEbEsrbrLRhSECYiao58cvocwMtP7Q==}
+    peerDependencies:
+      react: ^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0
+      react-dom: ^16.0.0-0 || ^17.0.0-0 || ^18.0.0-0
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /react-swipeable/7.0.0_react@18.2.0:
     resolution: {integrity: sha512-NI7KGfQ6gwNFN0Hor3vytYW3iRfMMaivGEuxcADOOfBCx/kqwXE8IfHFxEcxSUkxCYf38COLKYd9EMYZghqaUA==}
