@@ -2,7 +2,7 @@ import { nanoid } from "nanoid"
 import { lazy } from "react"
 
 const PreviewCardComponent = lazy(async () => import("../pages/PreviewCard"))
-// const ProfileCardComponent = lazy(async () => import('../components/ProfileCard'));
+const ProfileCardComponent = lazy(async () => import("../pages/ProfileCard"))
 // const PricingComponent = lazy(async () => import('../components/PricingComponent'));
 // const CountdownTimer = lazy(async () => import('../components/CountdownTimer'));
 // const SidebarComponent = lazy(async () => import('../components/SidebarComponent'));
@@ -14,8 +14,8 @@ const PreviewCardComponent = lazy(async () => import("../pages/PreviewCard"))
 // const Game2048 = lazy(async () => import('../components/Game2048'));
 
 export default [
-	{ name: "Preview Card", comp: <PreviewCardComponent key={nanoid()} />, labels: ["tailwind", "react-image"] } as const
-	// {name: 'Profile Card', comp: <ProfileCardComponent key={nanoid()}/>, labels: ['tailwind', 'react-image']} as const,
+	{ name: "Preview Card", comp: <PreviewCardComponent key={nanoid()} />, labels: ["tailwind", "react-image"] } as const,
+	{ name: "Profile Card", comp: <ProfileCardComponent key={nanoid()} />, labels: ["tailwind", "react-image"] } as const
 	// {name: 'Pricing Component', comp: <PricingComponent key={nanoid()}/>, labels: ['tailwind']} as const,
 	// {name: 'Countdown timer', comp: <CountdownTimer key={nanoid()}/>, labels: ['tailwind', 'useInterval']} as const,
 	// {name: 'Sidebar Component', comp: <SidebarComponent key={nanoid()}/>, labels: ['react-icons', 'tailwind']} as const,

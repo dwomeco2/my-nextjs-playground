@@ -61,7 +61,7 @@ export default function PreviewCardComponent() {
 										</div>
 									}
 								>
-									<Image className="object-cover" alt="wtf" src={src} fill />
+									<Image className="object-cover" alt="preview images" src={src} fill />
 								</Suspense>
 							</figure>
 							<div className="p-2 text-start">

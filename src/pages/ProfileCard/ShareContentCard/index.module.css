@@ -1,0 +1,27 @@
+.social-icons button svg {
+	transition: 0.5s;
+}
+
+.social-icons button[name="twitter"]:hover svg {
+	fill: aqua;
+}
+
+.social-icons button[name="facebook"]:hover svg {
+	fill: #4867aa;
+}
+
+.social-icons button[name="instagram"]:hover svg {
+	fill: #ec4b50;
+}
+
+.social-icons button[name="youtube"]:hover svg {
+	fill: red;
+}
+
+.social-icons button[name="linkedin"]:hover svg {
+	fill: #0077b5;
+}
+
+.social-icons button[name="github"]:hover svg {
+	fill: gray;
+}
