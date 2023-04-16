@@ -1,5 +1,5 @@
 import { Suspense, useState } from "react"
-import { imageSources } from "../../components/ImageData"
+import { imageSources } from "../../data/ImageData"
 // import { LazyImage } from "../../components/LazyImage"
 import Image from "next/image"
 import PuffLoader from "../../components/PuffLoader"

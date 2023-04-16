@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { Suspense } from "react"
-import { imageSources } from "../../components/ImageData"
 import PuffLoader from "../../components/PuffLoader"
+import { imageSources } from "../../data/ImageData"
 import Accordion from "./Accordion"
 import ShareCard from "./ShareContentCard"
 
