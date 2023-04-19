@@ -6,6 +6,15 @@
 
 /** @type {import("next").NextConfig} */
 const config = {
+	async redirects() {
+		return [
+			{
+				source: "/",
+				destination: "/MasonryLayout",
+				permanent: true
+			}
+		]
+	},
 	reactStrictMode: true,
 	images: {
 		remotePatterns: [

@@ -1,8 +1,8 @@
 import { Suspense, useState } from "react"
 import { imageSources } from "../../data/ImageData"
 // import { LazyImage } from "../../components/LazyImage"
+import PuffLoader from "components/share/PuffLoader"
 import Image from "next/image"
-import PuffLoader from "../../components/PuffLoader"
 import styles from "./index.module.css"
 
 export default function PreviewCardComponent() {

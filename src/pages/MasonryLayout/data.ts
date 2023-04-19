@@ -1,9 +1,12 @@
-import { createRef } from "react"
-import { idToSrc } from "./components/Header"
+import { atom } from "jotai"
 import imagesjson from "./images.json"
+import { paramsToSrc } from "./util"
 
-export default imagesjson.images.map(item => ({
+const images = imagesjson.images.map(item => ({
 	...item,
-	src: idToSrc(item.id),
-	ref: createRef<HTMLDivElement>()
+	src: paramsToSrc(item.id)
 }))
+
+const imagesAtom = atom(images)
+
+export default imagesAtom

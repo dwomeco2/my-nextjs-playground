@@ -1,40 +1,46 @@
 import Image from "next/image"
-import React, { useState } from "react"
-import Header, { addFiveImage } from "./components/Header"
+import React, { useEffect, useState } from "react"
+import Header from "./components/Header"
 
 import styles from "index.module.css"
+import { useAtom } from "jotai"
 import { useRouter } from "next/router"
 import { FixedLoader } from "./components/FixedLoader"
-import ImagesData from "./data"
-import { useAnimatedImage, useScrollToBottomListener } from "./hooks"
+import ImageAtom from "./data"
+import { useScrollToBottomListener } from "./hooks"
 import { type ImageType } from "./types"
+import { addFiveImage } from "./util"
 
 const MasonryImage = (image: ImageType) => {
 	const router = useRouter()
 
-	const toggleDetail = async (e: React.MouseEvent<HTMLElement>, image: ImageType) => {
-		if ("startViewTransition" in document) {
-			const imageDiv = e.currentTarget as HTMLDivElement
+	const toggleDetail = (e: React.MouseEvent<HTMLElement>, image: ImageType) => {
+		const imageDiv = e.currentTarget as HTMLDivElement
+		void router.prefetch(`/MasonryLayout/images/${image.id}`).then(() => {
+			if ("startViewTransition" in document) {
+				imageDiv.style.zIndex = "10"
 
-			imageDiv.style.zIndex = "10"
-
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			document.startViewTransition(async () => {
-				await router.push(`/MasonryLayout/images/${image.id}`)
-			})
-		} else {
-			await router.push(`/MasonryLayout/images/${image.id}`)
-		}
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				// @ts-ignore
+				document.startViewTransition(async () => {
+					await router.push(`/MasonryLayout/images/${image.id}`)
+				})
+			} else {
+				void router.push(`/MasonryLayout/images/${image.id}`)
+			}
+		})
 	}
+
+	useEffect(() => {
+		void router.prefetch(`/MasonryLayout/images/${image.id}`)
+	}, [router, image.id])
 
 	return (
 		<div
 			key={image.id}
-			ref={image.ref}
 			className="relative mb-2 cursor-pointer"
 			style={{ viewTransitionName: `photo-${image.id}` }}
-			onClick={e => void toggleDetail(e, image)}
+			onClick={e => toggleDetail(e, image)}
 		>
 			<Image
 				src={image.src}
@@ -56,7 +62,8 @@ const MasonryImage = (image: ImageType) => {
 }
 
 export default function MasonryLayout() {
-	const [images, setImages] = useAnimatedImage(ImagesData)
+	const [images, setImages] = useAtom(ImageAtom)
+	// const [images, setImages] = useAnimatedImage(ImagesData)
 	const loadingState = useState(false)
 
 	const [isLoading] = loadingState
@@ -78,7 +85,9 @@ export default function MasonryLayout() {
 						isLoading ? "mt-[-3rem]" : ""
 					}`}
 				>
-					{images.map(item => MasonryImage(item))}
+					{images.map((item, index) => (
+						<MasonryImage key={index} {...item} />
+					))}
 				</div>
 				<div className="flex h-[20px] w-full justify-center py-2">Reached Bottom</div>
 			</div>

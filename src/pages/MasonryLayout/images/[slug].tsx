@@ -1,11 +1,20 @@
+import { useAtomValue } from "jotai"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { type GetStaticPaths, type GetStaticProps } from "next/types"
-import ImagesData from "../data"
-import { type ImageType } from "../types"
+import { default as imagesAtom } from "../data"
 
-export default function DetailImage(image: ImageType) {
+export default function DetailImage() {
 	const router = useRouter()
+
+	const images = useAtomValue(imagesAtom)
+
+	const { slug } = router.query
+
+	const image = images.find(im => `${im.id}` === slug)
+
+	if (!slug) {
+		return <div>Image not found</div>
+	}
 
 	return (
 		<div className="relative m-12 flex h-screen items-center justify-center" onClick={() => router.back()}>
@@ -13,7 +22,6 @@ export default function DetailImage(image: ImageType) {
 				{image && (
 					<div
 						key={image.id}
-						ref={image.ref}
 						className="relative cursor-pointer"
 						style={{ viewTransitionName: `photo-${image.id}`, height: "100%" }}
 					>
@@ -23,37 +31,4 @@ export default function DetailImage(image: ImageType) {
 			</div>
 		</div>
 	)
-}
-
-export const getStaticProps: GetStaticProps = ({ params }) => {
-	if (!params || !params.slug) {
-		return {
-			props: { error: true }
-		}
-	}
-	const { slug } = params
-	const image = ImagesData.find(image => `${image.id}` === slug)
-
-	if (!image) {
-		return {
-			props: { error: true }
-		}
-	}
-
-	return {
-		props: image
-	}
-}
-
-export const getStaticPaths: GetStaticPaths = () => {
-	return {
-		paths: ImagesData.map(image => {
-			return {
-				params: {
-					slug: `${image.id}`
-				}
-			}
-		}),
-		fallback: "blocking"
-	}
 }
