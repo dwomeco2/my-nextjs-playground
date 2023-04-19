@@ -1,12 +1,12 @@
 import PuffLoader from "components/share/PuffLoader"
 import Image from "next/image"
 import { Suspense } from "react"
-import { imageSources } from "../../data/ImageData"
+import { randomSeedImageSrc } from "~/utils/utils"
 import Accordion from "./Accordion"
 import ShareCard from "./ShareContentCard"
 
 function ProfileCardComponent() {
-	const imageSrc = `${imageSources[0] ?? ""}?sig=profile`
+	const imageSrc = randomSeedImageSrc("profile")
 	return (
 		<div className="pd-4 flex h-80 w-64 flex-col overflow-clip rounded-lg bg-white shadow-md shadow-gray-400">
 			<div>

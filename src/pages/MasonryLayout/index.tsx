@@ -1,15 +1,14 @@
 import Image from "next/image"
 import React, { useEffect, useState } from "react"
-import Header from "./components/Header"
 
-import styles from "index.module.css"
+import FixedLoader from "components/pages/masonry/FixedLoader"
+import Header from "components/pages/masonry/Header"
 import { useAtom } from "jotai"
 import { useRouter } from "next/router"
-import { FixedLoader } from "./components/FixedLoader"
-import ImageAtom from "./data"
-import { useScrollToBottomListener } from "./hooks"
-import { type ImageType } from "./types"
-import { addFiveImage } from "./util"
+import ImageAtom from "~/data/masonry/data"
+import useScrollToBottomListener from "~/hooks/useScrollToBottomListener"
+import type ImageType from "~/types/masonry/types"
+import { addFiveImage } from "./apis/api"
 
 const MasonryImage = (image: ImageType) => {
 	const router = useRouter()

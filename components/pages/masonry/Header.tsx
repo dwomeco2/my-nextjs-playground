@@ -1,4 +1,4 @@
-import { type ImageType } from "../types"
+import type ImageType from "~/types/masonry/types"
 
 type HeaderProps = {
 	addFiveImageAction: () => void

@@ -1,4 +1,5 @@
-import { type ImageType } from "./types"
+import type ImageType from "~/types/masonry/types"
+import { randomSeedImageSrc } from "~/utils/utils"
 
 type AddFiveImageProps = {
 	loadingState: [boolean, React.Dispatch<React.SetStateAction<boolean>>]
@@ -39,10 +40,6 @@ function addImage(id: number) {
 		id,
 		h: `${randomHeight}`,
 		bg: randomColor,
-		src: paramsToSrc(id, undefined, randomHeight * 16)
+		src: randomSeedImageSrc(`masonry-${id}`, undefined, randomHeight * 16)
 	}
-}
-
-export function paramsToSrc(id: number, w?: number, h?: number) {
-	return `https://picsum.photos/seed/masonry-${id}/${w ?? 2000}/${h ?? 2000}`
 }

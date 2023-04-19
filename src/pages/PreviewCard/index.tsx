@@ -1,8 +1,7 @@
-import { Suspense, useState } from "react"
-import { imageSources } from "../../data/ImageData"
-// import { LazyImage } from "../../components/LazyImage"
 import PuffLoader from "components/share/PuffLoader"
 import Image from "next/image"
+import { Suspense, useState } from "react"
+import { randomSeedImageSrc } from "~/utils/utils"
 import styles from "./index.module.css"
 
 export default function PreviewCardComponent() {
@@ -11,7 +10,7 @@ export default function PreviewCardComponent() {
 		<div className="relative mb-8 w-full">
 			<div className="grid grid-cols-[repeat(auto-fit,_minmax(18rem,_1fr))] place-items-center gap-4">
 				{[1, 2, 3, 4, 5, 6].map(n => {
-					const src = `${imageSources[n % imageSources.length] ?? ""}?sig=preview-${n}`
+					const src = randomSeedImageSrc(`preview-${n}`, 288, 208)
 					return (
 						<div
 							key={n}
