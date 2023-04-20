@@ -1,6 +1,7 @@
 @import "./colar.css";
 @import "./layout.css";
 @import "./masonry.css";
+@import "./pricing.css";
 
 @tailwind base;
 @tailwind components;

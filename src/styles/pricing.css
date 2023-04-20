@@ -1,0 +1,24 @@
+:root {
+	--pricing-primary-color: #8477e2;
+	--slider-primary-color: #13d6c8;
+	--slider-primary-color-variant: #a0f3eb;
+	--discount-background-color: #f5ded4;
+	--discount-on-background-color: #ce6c49;
+	--secondary-color: #293356;
+	--toggle-off-color: #cfd8ee;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	background: var(--slider-primary-color);
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	cursor: grab;
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+	width: 35px;
+	height: 35px;
+}

@@ -1,0 +1,59 @@
+.btn_learn_more {
+	color: white;
+	background-color: var(--pricing-primary-color);
+	transition: 0.2s all ease-in-out;
+}
+
+.btn_learn_more:hover {
+	color: var(--pricing-primary-color);
+	background-color: white;
+	outline: 2px solid var(--pricing-primary-color);
+}
+
+.btn_learn_more_main {
+	color: var(--pricing-primary-color);
+	background-color: white;
+	transition: 0.2s all ease-in-out;
+}
+
+.btn_learn_more_main:hover {
+	color: white;
+	background-color: var(--pricing-primary-color);
+	outline: 2px solid white;
+}
+
+.pricing_toggle_btn {
+	background-color: var(--pricing-primary-color);
+	width: 40px;
+	height: 20px;
+}
+
+.pricing_toggle_btn.active {
+	background-color: white;
+}
+
+.pricing_toggle_btn::after {
+	content: "";
+	display: block;
+	width: 14px;
+	height: 14px;
+	margin-left: 2px;
+	background-color: white;
+	border-radius: 9999px;
+}
+.pricing_toggle_btn.active::after {
+	content: "";
+	display: block;
+	width: 14px;
+	height: 14px;
+	margin-left: 22px;
+	background-color: var(--pricing-primary-color);
+	border-radius: 9999px;
+}
+
+@media screen and (max-width: 640px) {
+	.pricing-container > div {
+		display: flex;
+		flex-direction: column;
+	}
+}
