@@ -8,6 +8,7 @@ import { useRouter } from "next/router"
 import ImageAtom from "~/data/masonry/data"
 import useScrollToBottomListener from "~/hooks/useScrollToBottomListener"
 import type ImageType from "~/types/masonry/types"
+import { elementScrollerOverlap } from "~/utils/utils"
 import { addFiveImage } from "./apis/api"
 
 const MasonryImage = (image: ImageType) => {
@@ -15,9 +16,20 @@ const MasonryImage = (image: ImageType) => {
 
 	const toggleDetail = (e: React.MouseEvent<HTMLElement>, image: ImageType) => {
 		const imageDiv = e.currentTarget as HTMLDivElement
+		const scroller = document.querySelector(".scroller") as HTMLDivElement
 		void router.prefetch(`/MasonryLayout/images/${image.id}`).then(() => {
 			if ("startViewTransition" in document) {
 				imageDiv.style.zIndex = "10"
+				imageDiv.style.viewTransitionName = "masonry-photo"
+				scroller.style.viewTransitionName = "masonry-frame"
+				const result = elementScrollerOverlap(scroller, imageDiv)
+				if (!result.fullyInView) {
+					if (result.bottom) {
+						const oh = imageDiv.style.height
+						imageDiv.style.height = `${+oh.substring(0, oh.length - 2) - result.bottom}px`
+					}
+					// not work for top
+				}
 
 				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 				// @ts-ignore
@@ -38,7 +50,13 @@ const MasonryImage = (image: ImageType) => {
 		<div
 			key={image.id}
 			className="relative mb-2 cursor-pointer"
-			style={{ viewTransitionName: `photo-${image.id}` }}
+			style={{
+				contain: "paint",
+				height: `${image.h}px`,
+				objectFit: "cover",
+				overflow: "clip",
+				mixBlendMode: "normal"
+			}}
 			onClick={e => toggleDetail(e, image)}
 		>
 			<Image
@@ -49,11 +67,7 @@ const MasonryImage = (image: ImageType) => {
 				sizes="100vw"
 				style={{
 					width: "100%",
-					height: `${image.h}rem`,
-					lineHeight: `${image.h}rem`,
-					objectFit: "cover",
-					overflow: "clip",
-					mixBlendMode: "normal"
+					height: `${image.h}px`
 				}}
 			/>
 		</div>

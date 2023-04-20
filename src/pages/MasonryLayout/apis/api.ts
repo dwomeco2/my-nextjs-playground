@@ -31,7 +31,7 @@ export const addFiveImage = (props: AddFiveImageProps) => {
 }
 
 function addImage(id: number) {
-	const randomHeight = Math.floor(Math.random() * (18 - 8 + 1)) + 8
+	const randomHeight = Math.floor(Math.random() * (288 - 128 + 1)) + 128
 	const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(
 		Math.random() * 256
 	)})`
@@ -40,6 +40,6 @@ function addImage(id: number) {
 		id,
 		h: `${randomHeight}`,
 		bg: randomColor,
-		src: randomSeedImageSrc(`masonry-${id}`, undefined, randomHeight * 16)
+		src: randomSeedImageSrc(`masonry-${id}`)
 	}
 }

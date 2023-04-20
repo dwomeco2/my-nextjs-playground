@@ -1,5 +1,6 @@
 @import "./colar.css";
 @import "./layout.css";
+@import "./masonry.css";
 
 @tailwind base;
 @tailwind components;

@@ -1,9 +1,9 @@
+import Accordion from "components/pages/profile/Accordion"
+import ShareCard from "components/pages/profile/ShareContentCard"
 import PuffLoader from "components/share/PuffLoader"
 import Image from "next/image"
 import { Suspense } from "react"
 import { randomSeedImageSrc } from "~/utils/utils"
-import Accordion from "./Accordion"
-import ShareCard from "./ShareContentCard"
 
 function ProfileCardComponent() {
 	const imageSrc = randomSeedImageSrc("profile")

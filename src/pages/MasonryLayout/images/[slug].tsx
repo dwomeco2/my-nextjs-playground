@@ -17,13 +17,23 @@ export default function DetailImage() {
 	}
 
 	return (
-		<div className="relative m-12 flex h-screen items-center justify-center" onClick={() => router.back()}>
+		<div
+			className="relative mt-[86px] flex h-[40rem] w-full items-center justify-center overflow-clip rounded-md"
+			style={{ viewTransitionName: "masonry-frame" }}
+			onClick={() => router.back()}
+		>
 			<div className="image_detail h-full w-full">
 				{image && (
 					<div
 						key={image.id}
 						className="relative cursor-pointer"
-						style={{ viewTransitionName: `photo-${image.id}`, height: "100%" }}
+						style={{
+							viewTransitionName: "masonry-photo",
+							contain: "paint",
+							height: "40rem",
+							objectFit: "cover",
+							overflow: "clip"
+						}}
 					>
 						<Image src={image.src} alt="masonry image" fill style={{ objectFit: "cover" }} />
 					</div>

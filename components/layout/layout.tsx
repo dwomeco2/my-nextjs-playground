@@ -13,16 +13,15 @@ const queryClient = new QueryClient()
 const Menu = () => {
 	const [activeLayout, setActiveLayout] = useState(0)
 
+	const border = (index: number) => (activeLayout === index ? "border-b-2 border-solid border-b-red-500" : "")
+
 	return (
 		<div className="masked-overflow no-scrollbar component-selector mb-6 flex w-full overflow-x-auto sm:mx-auto sm:w-[524px] md:w-[720px]">
 			{layoutComponent.map(({ name, pageName }, index) => (
 				<Link
 					key={name as string}
-					href={`${pageName}`}
-					className={`menu-text inline cursor-pointer select-none p-2 px-4 
-                  ${activeLayout === index ? "border-b-2 border-solid border-b-red-500" : ""}
-
-                `}
+					href={`/${pageName}`}
+					className={`menu-text inline cursor-pointer select-none p-2 px-4 ${border(index)}`}
 					onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
 						const selfEl = e.target as HTMLAnchorElement
 						selfEl.scrollIntoView({ behavior: "smooth", inline: "center" })
@@ -46,7 +45,8 @@ const Background = () => {
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
 	const router = useRouter()
-	const activeLayout = layoutComponent.find(c => c.pageName === router.pathname.substring(1))
+	const pathname = router.pathname.split("/")[1]
+	const activeLayout = layoutComponent.find(c => c.pageName === pathname)
 
 	return (
 		<>
