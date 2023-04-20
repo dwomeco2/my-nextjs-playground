@@ -1,54 +1,33 @@
-import { nanoid } from "nanoid"
-import { lazy } from "react"
-
-const PreviewCardComponent = lazy(async () => import("~/pages/PreviewCard"))
-const ProfileCardComponent = lazy(async () => import("~/pages/ProfileCard"))
-const PricingComponent = lazy(async () => import("~/pages/PricingComponent"))
-const CountdownTimer = lazy(async () => import("~/pages/CountdownTimer"))
-const SidebarComponent = lazy(async () => import("~/pages/SidebarComponent"))
-// const ImageSlider = lazy(async () => import('../components/ImageSlider'));
-const MasonryLayout = lazy(async () => import("~/pages/MasonryLayout"))
-// const HackerNews = lazy(async () => import('../components/HackerNews'));
-// const IssuesWithLibrary = lazy(async () => import('../components/IssuesWithLibrary'));
-// const TodoList = lazy(async () => import('../components/TodoList'));
-// const Game2048 = lazy(async () => import('../components/Game2048'));
-
 export default [
 	{
 		name: "Preview Card",
 		pageName: "PreviewCard",
-		comp: <PreviewCardComponent key={nanoid()} />,
 		labels: ["tailwind", "react-image"]
 	} as const,
 	{
 		name: "Profile Card",
 		pageName: "ProfileCard",
-		comp: <ProfileCardComponent key={nanoid()} />,
 		labels: ["tailwind", "react-image"]
 	} as const,
 	{
 		name: "Pricing Component",
 		pageName: "PricingComponent",
-		comp: <PricingComponent key={nanoid()} />,
 		labels: ["tailwind"]
 	} as const,
 	{
 		name: "Countdown timer",
 		pageName: "CountdownTimer",
-		comp: <CountdownTimer key={nanoid()} />,
 		labels: ["tailwind", "useInterval"]
 	} as const,
 	{
 		name: "Sidebar Component",
 		pageName: "SidebarComponent",
-		comp: <SidebarComponent key={nanoid()} />,
 		labels: ["react-icons", "tailwind"]
 	} as const,
 	// {name: 'Image Slider', comp: <ImageSlider key={nanoid()}/>, labels: ['react-transition-group', 'tailwind']} as const,
 	{
 		name: "Masonry layout",
 		pageName: "MasonryLayout",
-		comp: <MasonryLayout key={nanoid()} />,
 		labels: ["react-image", "intersection observer", "layout animation", "tailwind", "jotai", "view transition"]
 	} as const
 	// {name: 'Hacker News', comp: <HackerNews key={nanoid()}/>, labels: ['jotai', 'react-query', 'zod', 'intersection observer', 'tailwind']} as const,

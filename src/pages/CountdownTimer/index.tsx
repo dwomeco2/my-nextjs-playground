@@ -1,7 +1,7 @@
-import { atom, useAtomValue } from "jotai"
+import { type GetStaticProps } from "next"
 import prand from "pure-rand"
 import { useEffect, useReducer, useRef } from "react"
-import { rng } from "~/utils/utils"
+import { randomMinMax } from "~/utils/utils"
 import styles from "./index.module.css"
 
 type TimerProps = {
@@ -150,13 +150,14 @@ function FlippingCountDownComponent({ num, upperLimit, scale }: { num: number; u
 	)
 }
 
-const randomInitTotalSeconds = atom(prand.unsafeUniformIntDistribution(1, 8639999, rng))
-
-export default function CountdownTimer() {
-	const v = useAtomValue(randomInitTotalSeconds)
+type Props = {
+	randomInitTotalSeconds: number
+}
+export default function CountdownTimer(props: Props) {
+	const { randomInitTotalSeconds } = props
 
 	const [state]: TimerProps["countdownReturns"] = useCountDownTimer({
-		initTotalSeconds: v,
+		initTotalSeconds: randomInitTotalSeconds,
 		timerInterval: 1000
 	})
 
@@ -186,4 +187,13 @@ export default function CountdownTimer() {
 			</div>
 		</div>
 	)
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+	const randomInitTotalSeconds = randomMinMax(1, 8639999)
+	return Promise.resolve({
+		props: {
+			randomInitTotalSeconds
+		}
+	})
 }

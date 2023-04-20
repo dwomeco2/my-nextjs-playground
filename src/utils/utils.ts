@@ -32,9 +32,9 @@ export function elementScrollerOverlap(scroller: HTMLDivElement, element: HTMLDi
 
 // consistent Server Client random number generation
 // Object.freeze for singleton
-const randomSeed = Math.random()
+const seed = Date.now() ^ (Math.random() * 0x100000000)
 
-export const rng = prand.xoroshiro128plus(randomSeed)
+export const rng = prand.xoroshiro128plus(seed)
 
 export function randomMinMax(min: number, max: number) {
 	return prand.unsafeUniformIntDistribution(min, max, rng)
