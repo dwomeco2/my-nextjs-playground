@@ -48,6 +48,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 	const pathname = router.pathname.split("/")[1]
 	const activeLayout = layoutComponent.find(c => c.pageName === pathname)
 
+	if (!activeLayout) {
+		return <></>
+	}
+
 	return (
 		<>
 			<Head>
@@ -63,7 +67,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 						<div className="mt-4">
 							<div className="mx-auto flex w-full justify-center md:w-10/12 xl:w-9/12">
 								<div className="relative w-full">
-									<TagLabel labels={activeLayout?.labels as readonly string[]} />
+									<TagLabel labels={activeLayout.labels as readonly string[]} />
 									{children}
 								</div>
 							</div>

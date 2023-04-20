@@ -5,11 +5,11 @@ import FixedLoader from "components/pages/masonry/FixedLoader"
 import Header from "components/pages/masonry/Header"
 import { useAtom } from "jotai"
 import { useRouter } from "next/router"
+import { addFiveImage } from "~/apis/masonry/api"
 import ImageAtom from "~/data/masonry/data"
 import useScrollToBottomListener from "~/hooks/useScrollToBottomListener"
 import type ImageType from "~/types/masonry/types"
 import { elementScrollerOverlap } from "~/utils/utils"
-import { addFiveImage } from "./apis/api"
 
 const MasonryImage = (image: ImageType) => {
 	const router = useRouter()
@@ -20,7 +20,11 @@ const MasonryImage = (image: ImageType) => {
 		void router.prefetch(`/MasonryLayout/images/${image.id}`).then(() => {
 			if ("startViewTransition" in document) {
 				imageDiv.style.zIndex = "10"
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				// @ts-ignore
 				imageDiv.style.viewTransitionName = "masonry-photo"
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				// @ts-ignore
 				scroller.style.viewTransitionName = "masonry-frame"
 				const result = elementScrollerOverlap(scroller, imageDiv)
 				if (!result.fullyInView) {
