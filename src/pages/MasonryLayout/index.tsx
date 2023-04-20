@@ -1,10 +1,11 @@
 import Image from "next/image"
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 
 import FixedLoader from "components/pages/masonry/FixedLoader"
 import Header from "components/pages/masonry/Header"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useRouter } from "next/router"
+import { useAnimatedLayout } from "~/hooks/masonry/hooks"
 import useScrollToBottomListener from "~/hooks/useScrollToBottomListener"
 import { default as masonryState } from "~/state/masonry/state"
 import type ImageType from "~/types/masonry/types"
@@ -13,10 +14,12 @@ import { elementScrollerOverlap } from "~/utils/utils"
 const MasonryImage = (image: ImageType) => {
 	const router = useRouter()
 
-	const toggleDetail = (e: React.MouseEvent<HTMLElement>, image: ImageType) => {
+	const detailPath = `/MasonryLayout/images/${image.id}`
+
+	const toggleDetail = (e: React.MouseEvent<HTMLElement>) => {
 		const imageDiv = e.currentTarget as HTMLDivElement
 		const scroller = document.querySelector(".scroller") as HTMLDivElement
-		void router.prefetch(`/MasonryLayout/images/${image.id}`).then(() => {
+		void router.prefetch(detailPath).then(() => {
 			if ("startViewTransition" in document) {
 				imageDiv.style.zIndex = "10"
 				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -37,30 +40,29 @@ const MasonryImage = (image: ImageType) => {
 				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 				// @ts-ignore
 				document.startViewTransition(async () => {
-					await router.push(`/MasonryLayout/images/${image.id}`)
+					await router.push(detailPath)
 				})
 			} else {
-				void router.push(`/MasonryLayout/images/${image.id}`)
+				void router.push(detailPath)
 			}
 		})
 	}
 
 	useEffect(() => {
-		void router.prefetch(`/MasonryLayout/images/${image.id}`)
-	}, [router, image.id])
+		void router.prefetch(detailPath)
+	}, [router, detailPath])
 
 	return (
 		<div
-			key={image.id}
+			ref={image.innerRef}
 			className="relative mb-2 cursor-pointer"
 			style={{
 				contain: "paint",
-				height: `${image.h}px`,
 				objectFit: "cover",
 				overflow: "clip",
 				mixBlendMode: "normal"
 			}}
-			onClick={e => toggleDetail(e, image)}
+			onClick={toggleDetail}
 		>
 			<Image
 				src={image.src}
@@ -70,7 +72,9 @@ const MasonryImage = (image: ImageType) => {
 				sizes="100vw"
 				style={{
 					width: "100%",
-					height: `${image.h}px`
+					height: `${image.h}px`,
+					objectFit: "cover",
+					overflow: "clip"
 				}}
 			/>
 		</div>
@@ -85,7 +89,8 @@ export default function MasonryLayout() {
 	const suffleImages = useSetAtom(suffleImagesAtom)
 	const isLoading = useAtomValue(loadingAtom)
 	const images = useAtomValue(imagesAtom)
-	// const [images, setImages] = useAnimatedImage(ImagesData)
+
+	useAnimatedLayout(images)
 
 	const scrollerRef = useScrollToBottomListener({ onBottomCallback: addMoreImages })
 

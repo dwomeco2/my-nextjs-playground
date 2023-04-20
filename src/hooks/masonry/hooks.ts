@@ -1,22 +1,22 @@
-import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react"
-import ImageType from "~/types/masonry/types"
+import { useEffect, useState, type RefObject } from "react"
 
-type ImageBoundingRect = { ref: React.RefObject<HTMLDivElement>; br: DOMRect }
+type ImageBoundingRect = { ref: React.RefObject<HTMLDivElement>; br: DOMRect | undefined }
 
-type AnimatedLayoutHookType = [ImageType[], Dispatch<SetStateAction<ImageType[]>>]
-
-export function useAnimatedImage(imagesProp: ImageType[] | undefined): AnimatedLayoutHookType {
-	const [images, setImages] = useState<ImageType[]>(imagesProp ?? [])
+type useAnimatedType = {
+	innerRef: RefObject<HTMLDivElement>
+}
+export function useAnimatedLayout(images: useAnimatedType[]): void {
 	const [domRects, setDomRects] = useState<ImageBoundingRect[]>()
 
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		const dr = images.map(item => ({ ref: item.ref, br: item.ref.current!.getBoundingClientRect() }))
+		const dr = images.map(item => ({ ref: item.innerRef, br: item.innerRef.current?.getBoundingClientRect() }))
 
 		if (domRects && dr) {
 			domRects.forEach(oldItem => {
+				if (!oldItem.br) return
 				const newItem = dr.find(item => item.ref.current === oldItem.ref.current)
-				if (newItem) {
+				if (newItem && newItem.br) {
 					const domNode = newItem.ref.current
 					const deltaX = oldItem.br.left - newItem.br.left
 					const deltaY = oldItem.br.top - newItem.br.top
@@ -41,12 +41,10 @@ export function useAnimatedImage(imagesProp: ImageType[] | undefined): AnimatedL
 	}, [images, domRects])
 
 	useEffect(() => {
-		if (images.every(item => item.ref.current)) {
+		if (images.every(item => item.innerRef.current)) {
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-			const dr = images.map(item => ({ ref: item.ref, br: item.ref.current!.getBoundingClientRect() }))
+			const dr = images.map(item => ({ ref: item.innerRef, br: item.innerRef.current?.getBoundingClientRect() }))
 			setDomRects(dr)
 		}
 	}, [images])
-
-	return [images, setImages]
 }

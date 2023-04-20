@@ -1,6 +1,7 @@
 import { atom } from "jotai"
+import prand from "pure-rand"
 import { createRef } from "react"
-import { randomSeedImageSrc } from "~/utils/utils"
+import { randomSeedImageSrc, rng } from "~/utils/utils"
 
 const images = [...Array(10).keys()].map(index => addImage(index))
 
@@ -38,17 +39,19 @@ export default function masonryState() {
 }
 
 function addImage(id: number) {
-	const randomHeight = Math.floor(Math.random() * (288 - 128 + 1)) + 128
-	const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(
-		Math.random() * 256
-	)})`
+	const randomHeight = prand.unsafeUniformIntDistribution(128, 288, rng)
+	const rColor = prand.unsafeUniformIntDistribution(0, 255, rng)
+	const gColor = prand.unsafeUniformIntDistribution(0, 255, rng)
+	const bColor = prand.unsafeUniformIntDistribution(0, 255, rng)
+
+	const randomColor = `rgb(${rColor}, ${gColor}, ${bColor})`
 
 	return {
 		id,
 		h: `${randomHeight}`,
 		bg: randomColor,
 		src: randomSeedImageSrc(`masonry-${id}`),
-		ref: createRef<HTMLDivElement>()
+		innerRef: createRef<HTMLDivElement>()
 	}
 }
 

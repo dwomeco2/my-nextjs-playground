@@ -1,3 +1,5 @@
+import prand from "pure-rand"
+
 export function randomSeedImageSrc(seed: string, w?: number, h?: number) {
 	return `https://picsum.photos/seed/${seed}/${w ?? 2000}/${h ?? 2000}`
 }
@@ -27,3 +29,9 @@ export function elementScrollerOverlap(scroller: HTMLDivElement, element: HTMLDi
 
 	return { fullyInView: true }
 }
+
+// consistent Server Client random number generation
+// Object.freeze for singleton
+const randomSeed = Object.freeze(Math.random())
+
+export const rng = prand.xoroshiro128plus(randomSeed)
