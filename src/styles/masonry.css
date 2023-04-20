@@ -11,18 +11,5 @@
 	height: 100%;
 	/* Clip any overflow of the view */
 	overflow: clip;
-}
-
-/* The old view is the thumbnail */
-::view-transition-old(masonry-photo) {
-	/* Maintain the aspect ratio of the view,
-  by shrinking it to fit within the bounds of the element */
-	object-fit: contain;
-}
-
-/* The new view is the full image */
-::view-transition-new(masonry-photo) {
-	/* Maintain the aspect ratio of the view,
-  by growing it to cover the bounds of the element */
 	object-fit: cover;
 }

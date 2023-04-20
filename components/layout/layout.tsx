@@ -11,6 +11,7 @@ import layoutComponent from "./tabs"
 const queryClient = new QueryClient()
 
 const Menu = () => {
+	const router = useRouter()
 	const [activeLayout, setActiveLayout] = useState(0)
 
 	const border = (index: number) => (activeLayout === index ? "border-b-2 border-solid border-b-red-500" : "")
@@ -23,9 +24,17 @@ const Menu = () => {
 					href={`/${pageName}`}
 					className={`menu-text inline cursor-pointer select-none p-2 px-4 ${border(index)}`}
 					onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+						e.preventDefault()
 						const selfEl = e.target as HTMLAnchorElement
 						selfEl.scrollIntoView({ behavior: "smooth", inline: "center" })
 						setActiveLayout(index)
+						if ("startViewTransition" in document) {
+							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+							// @ts-ignore
+							document.startViewTransition(async () => {
+								await router.push(selfEl.href)
+							})
+						}
 					}}
 				>
 					{name}
@@ -66,7 +75,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 						<Menu />
 						<div className="mt-4">
 							<div className="mx-auto flex w-full justify-center md:w-10/12 xl:w-9/12">
-								<div className="relative w-full">
+								<div className="relative w-full" style={{ viewTransitionName: "page" }}>
 									<TagLabel labels={activeLayout.labels as readonly string[]} />
 									{children}
 								</div>

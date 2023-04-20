@@ -1,15 +1,14 @@
 import Image from "next/image"
-import React, { useEffect, useRef } from "react"
+import React, { useEffect } from "react"
 
 import FixedLoader from "components/pages/masonry/FixedLoader"
 import Header from "components/pages/masonry/Header"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useRouter } from "next/router"
-import { useAnimatedLayout } from "~/hooks/masonry/hooks"
+import { useAnimatedLayout } from "~/hooks/useAnimatedLayout"
 import useScrollToBottomListener from "~/hooks/useScrollToBottomListener"
 import { default as masonryState } from "~/state/masonry/state"
 import type ImageType from "~/types/masonry/types"
-import { elementScrollerOverlap } from "~/utils/utils"
 
 const MasonryImage = (image: ImageType) => {
 	const router = useRouter()
@@ -28,14 +27,7 @@ const MasonryImage = (image: ImageType) => {
 				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 				// @ts-ignore
 				scroller.style.viewTransitionName = "masonry-frame"
-				const result = elementScrollerOverlap(scroller, imageDiv)
-				if (!result.fullyInView) {
-					if (result.bottom) {
-						const oh = imageDiv.style.height
-						imageDiv.style.height = `${+oh.substring(0, oh.length - 2) - result.bottom}px`
-					}
-					// not work for top
-				}
+				// modify to visible area would affect the layout
 
 				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 				// @ts-ignore
@@ -57,6 +49,7 @@ const MasonryImage = (image: ImageType) => {
 			ref={image.innerRef}
 			className="relative mb-2 cursor-pointer"
 			style={{
+				height: `${image.h}px`,
 				contain: "paint",
 				objectFit: "cover",
 				overflow: "clip",

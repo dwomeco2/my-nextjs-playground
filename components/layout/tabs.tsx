@@ -34,7 +34,7 @@ export default [
 		name: "Masonry layout",
 		pageName: "MasonryLayout",
 		comp: <MasonryLayout key={nanoid()} />,
-		labels: ["react-image", "intersection observer", "layout animation", "tailwind"]
+		labels: ["react-image", "intersection observer", "layout animation", "tailwind", "jotai", "view transition"]
 	} as const
 	// {name: 'Hacker News', comp: <HackerNews key={nanoid()}/>, labels: ['jotai', 'react-query', 'zod', 'intersection observer', 'tailwind']} as const,
 	// {name: 'Library encounterd issues log', comp: <IssuesWithLibrary key={nanoid()}/>, labels: []} as const,

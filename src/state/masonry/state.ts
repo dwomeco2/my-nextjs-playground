@@ -38,6 +38,7 @@ export default function masonryState() {
 	return [readonlyLoadingAtom, masonryAtoms] as const
 }
 
+// server and client side
 function addImage(id: number) {
 	const randomHeight = prand.unsafeUniformIntDistribution(128, 288, rng)
 	const rColor = prand.unsafeUniformIntDistribution(0, 255, rng)
