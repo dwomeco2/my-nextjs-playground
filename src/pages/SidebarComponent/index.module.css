@@ -1,0 +1,19 @@
+@layer components {
+  :root {
+    --sidebar-primary-color: #8477e2;
+    --sidebar-primary-color-variant: #8477e2;
+    --sidebar-secondary-color: #8477e2;
+    --sidebar-secondary-color-variant: #8477e2;
+    --sidebar-background-color-dark: #131215;
+    --sidebar-background-color-variant-dark: #1b1b1d;
+    --sidebar-background-color-light: #f3f3f3;
+    --sidebar-surface-color-dark: #2f2f30;
+    --sidebar-surface-color-light: #e6e6e6;
+    --sidebar-on-primary-color: #8477e2;
+    --sidebar-on-secondary-color: #8477e2;
+    --sidebar-on-background-color-dark: #afb0b1;
+    --sidebar-on-background-color-light: #838791;
+    --sidebar-on-surface-color-dark: #fff;
+    --sidebar-on-surface-color-light: #242424;
+  }
+}

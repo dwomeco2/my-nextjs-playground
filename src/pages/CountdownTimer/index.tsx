@@ -1,4 +1,7 @@
+import { atom, useAtomValue } from "jotai"
+import prand from "pure-rand"
 import { useEffect, useReducer, useRef } from "react"
+import { rng } from "~/utils/utils"
 import styles from "./index.module.css"
 
 type TimerProps = {
@@ -75,10 +78,6 @@ function useInterval(callback: () => void, delay: number) {
 	}, [delay])
 }
 
-function randomWithRange(min: number, max: number) {
-	return Math.floor(Math.random() * (max - min + 1)) + min
-}
-
 function mod(n: number, m: number) {
 	return ((n % m) + m) % m
 }
@@ -87,6 +86,10 @@ function FlippingCountDownComponent({ num, upperLimit, scale }: { num: number; u
 	// Add one here, when state is 1, we want to flipped to 1, not from 1 to 0
 	const current = (num + 1) % (upperLimit + 1)
 	const next = mod(current - 1, upperLimit + 1)
+
+	const padTwo = (n: number) => {
+		return String(n).padStart(2, "0")
+	}
 
 	useEffect(() => {
 		const contentNextTick = (element: Element) => {
@@ -139,19 +142,21 @@ function FlippingCountDownComponent({ num, upperLimit, scale }: { num: number; u
 
 	return (
 		<div className={`${styles.flip_card ?? ""}`}>
-			<div className={`${styles["top-half"] ?? ""} ${scale}`}> {current}</div>
-			<div className={`${styles["bottom-half"] ?? ""} ${scale}`}> {current}</div>
-			<div className={`${styles["top-half-flip"] ?? ""} ${scale}`}> {current}</div>
-			<div className={`${styles["bottom-half-flip"] ?? ""} ${scale}`}> {next}</div>
+			<div className={`${styles["top-half"] ?? ""} ${scale}`}>{padTwo(current)}</div>
+			<div className={`${styles["bottom-half"] ?? ""} ${scale}`}>{padTwo(current)}</div>
+			<div className={`${styles["top-half-flip"] ?? ""} ${scale}`}>{padTwo(current)}</div>
+			<div className={`${styles["bottom-half-flip"] ?? ""} ${scale}`}>{padTwo(next)}</div>
 		</div>
 	)
 }
 
+const randomInitTotalSeconds = atom(prand.unsafeUniformIntDistribution(1, 8639999, rng))
+
 export default function CountdownTimer() {
-	const initTotalSeconds = randomWithRange(1, 8639999)
+	const v = useAtomValue(randomInitTotalSeconds)
 
 	const [state]: TimerProps["countdownReturns"] = useCountDownTimer({
-		initTotalSeconds,
+		initTotalSeconds: v,
 		timerInterval: 1000
 	})
 
