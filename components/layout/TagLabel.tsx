@@ -22,7 +22,7 @@ export default function TagLabel(props: TagLabelProps) {
 			{labels.map((label, index) => {
 				const colorClass = labelColors[index % labelColors.length] ?? ""
 				return (
-					<span key={label} className={`${colorClass} rounded-full px-2 py-1 text-xs`}>
+					<span key={label} className={`${colorClass} rounded-full px-2 py-1 text-xs text-white`}>
 						#{label}
 					</span>
 				)
