@@ -2,6 +2,7 @@
 @import "./layout.css";
 @import "./masonry.css";
 @import "./pricing.css";
+@import "./sidebar.css";
 
 @tailwind base;
 @tailwind components;
