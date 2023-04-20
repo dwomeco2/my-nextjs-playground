@@ -1,6 +1,5 @@
-import { type GetStaticProps } from "next"
-import prand from "pure-rand"
 import { useEffect, useReducer, useRef } from "react"
+import { WithClientOnly } from "~/hooks/ClientOnly"
 import { randomMinMax } from "~/utils/utils"
 import styles from "./index.module.css"
 
@@ -150,14 +149,9 @@ function FlippingCountDownComponent({ num, upperLimit, scale }: { num: number; u
 	)
 }
 
-type Props = {
-	randomInitTotalSeconds: number
-}
-export default function CountdownTimer(props: Props) {
-	const { randomInitTotalSeconds } = props
-
+function CountdownTimer() {
 	const [state]: TimerProps["countdownReturns"] = useCountDownTimer({
-		initTotalSeconds: randomInitTotalSeconds,
+		initTotalSeconds: randomMinMax(1, 8639999),
 		timerInterval: 1000
 	})
 
@@ -189,11 +183,4 @@ export default function CountdownTimer(props: Props) {
 	)
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-	const randomInitTotalSeconds = randomMinMax(1, 8639999)
-	return Promise.resolve({
-		props: {
-			randomInitTotalSeconds
-		}
-	})
-}
+export default WithClientOnly(CountdownTimer)
