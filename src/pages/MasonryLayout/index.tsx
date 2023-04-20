@@ -1,13 +1,12 @@
 import Image from "next/image"
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 
 import FixedLoader from "components/pages/masonry/FixedLoader"
 import Header from "components/pages/masonry/Header"
-import { useAtom } from "jotai"
+import { useAtomValue, useSetAtom } from "jotai"
 import { useRouter } from "next/router"
-import { addFiveImage } from "~/apis/masonry/api"
-import ImageAtom from "~/data/masonry/data"
 import useScrollToBottomListener from "~/hooks/useScrollToBottomListener"
+import { default as masonryState } from "~/state/masonry/state"
 import type ImageType from "~/types/masonry/types"
 import { elementScrollerOverlap } from "~/utils/utils"
 
@@ -79,19 +78,20 @@ const MasonryImage = (image: ImageType) => {
 }
 
 export default function MasonryLayout() {
-	const [images, setImages] = useAtom(ImageAtom)
+	const [loadingAtom, masonryAtom] = masonryState()
+	const [imagesAtom, addMoreImagesAtom, suffleImagesAtom] = masonryAtom
+
+	const addMoreImages = useSetAtom(addMoreImagesAtom)
+	const suffleImages = useSetAtom(suffleImagesAtom)
+	const isLoading = useAtomValue(loadingAtom)
+	const images = useAtomValue(imagesAtom)
 	// const [images, setImages] = useAnimatedImage(ImagesData)
-	const loadingState = useState(false)
 
-	const [isLoading] = loadingState
-
-	const addFiveImageAction = () => addFiveImage({ loadingState, setImages })
-
-	const scrollerRef = useScrollToBottomListener({ onBottomCallback: addFiveImageAction })
+	const scrollerRef = useScrollToBottomListener({ onBottomCallback: addMoreImages })
 
 	return (
 		<div>
-			<Header addFiveImageAction={addFiveImageAction} setImages={setImages} />
+			<Header addFiveImageAction={addMoreImages} suffleImagesAction={suffleImages} />
 			<div
 				ref={scrollerRef}
 				className="scroller no-scrollbar relative h-[40rem] w-full overflow-y-scroll rounded-md bg-gray-200 bg-opacity-10"
@@ -106,7 +106,7 @@ export default function MasonryLayout() {
 						<MasonryImage key={index} {...item} />
 					))}
 				</div>
-				<div className="flex h-[20px] w-full justify-center py-2">Reached Bottom</div>
+				<div className="flex h-[20px] w-full justify-center py-2 text-white">Reached Bottom</div>
 			</div>
 		</div>
 	)

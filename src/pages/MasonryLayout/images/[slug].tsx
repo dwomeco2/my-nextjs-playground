@@ -1,10 +1,13 @@
 import { useAtomValue } from "jotai"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import imagesAtom from "~/data/masonry/data"
+import { default as masonryState } from "~/state/masonry/state"
 
 export default function DetailImage() {
 	const router = useRouter()
+
+	const [, masonryAtom] = masonryState()
+	const [imagesAtom] = masonryAtom
 
 	const images = useAtomValue(imagesAtom)
 
