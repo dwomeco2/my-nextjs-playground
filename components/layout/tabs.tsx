@@ -4,7 +4,7 @@ import { lazy } from "react"
 const PreviewCardComponent = lazy(async () => import("../../src/pages/PreviewCard"))
 const ProfileCardComponent = lazy(async () => import("../../src/pages/ProfileCard"))
 const PricingComponent = lazy(async () => import("../../src/pages/PricingComponent"))
-// const CountdownTimer = lazy(async () => import('../components/CountdownTimer'));
+const CountdownTimer = lazy(async () => import("../../src/pages/CountdownTimer"))
 // const SidebarComponent = lazy(async () => import('../components/SidebarComponent'));
 // const ImageSlider = lazy(async () => import('../components/ImageSlider'));
 const MasonryLayout = lazy(async () => import("../../src/pages/MasonryLayout"))
@@ -32,7 +32,12 @@ export default [
 		comp: <PricingComponent key={nanoid()} />,
 		labels: ["tailwind"]
 	} as const,
-	// {name: 'Countdown timer', comp: <CountdownTimer key={nanoid()}/>, labels: ['tailwind', 'useInterval']} as const,
+	{
+		name: "Countdown timer",
+		pageName: "CountdownTimer",
+		comp: <CountdownTimer key={nanoid()} />,
+		labels: ["tailwind", "useInterval"]
+	} as const,
 	// {name: 'Sidebar Component', comp: <SidebarComponent key={nanoid()}/>, labels: ['react-icons', 'tailwind']} as const,
 	// {name: 'Image Slider', comp: <ImageSlider key={nanoid()}/>, labels: ['react-transition-group', 'tailwind']} as const,
 	{

@@ -1,0 +1,154 @@
+.flip_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  text-align: center;
+  font-size: 64px;
+  z-index: 10;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* shadow */
+.flip_card::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: -1;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Border between upper & lower part */
+.flip_card::after {
+  content: '';
+  width: 90%;
+  height: 1px;
+  position: absolute;
+  background-color: black;
+}
+
+.top-half,
+.top-half-flip {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  line-height: 1.57em;
+  color: #a3a3a3;
+  background: #1b0000;
+  overflow: hidden;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* punch hole */
+.top-half::before,
+.top-half-flip::before,
+.bottom-half::before,
+.bottom-half-flip::before,
+.top-half-flip::after,
+.top-half-flip::after,
+.bottom-half::after,
+.bottom-half-flip::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgb(229 231 235);
+  border-radius: 100%;
+  z-index: 100;
+}
+
+.top-half::before,
+.top-half-flip::before {
+  bottom: -4px;
+  left: -4px;
+}
+
+.top-half::after,
+.top-half-flip::after {
+  bottom: -4px;
+  right: -4px;
+}
+
+.bottom-half::before,
+.bottom-half-flip::before {
+  top: -4px;
+  left: -4px;
+}
+
+.bottom-half::after,
+.bottom-half-flip::after {
+  top: -4px;
+  right: -4px;
+}
+
+.bottom-half,
+.bottom-half-flip {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  line-height: 0;
+  color: white;
+  background: #2b0000;
+  overflow: hidden;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.top-half-flip {
+  position: absolute;
+  top: 0;
+  transform: rotateX(0deg);
+  transform-origin: bottom;
+}
+
+.top-half-flip.flip_animate {
+  animation: from_top_to_middle ease-in 250ms;
+}
+
+@keyframes from_top_to_middle {
+  100% {
+    transform: rotateX(-90deg);
+  }
+}
+
+.bottom-half-flip {
+  position: absolute;
+  top: 50%;
+  transform: rotateX(-90deg);
+  transform-origin: top;
+}
+
+.bottom-half-flip.flip_animate {
+  animation: from_middle_to_bottom ease-out 250ms;
+}
+
+@keyframes from_middle_to_bottom {
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .clock {
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .clock {
+    gap: 1rem;
+    overflow-x: auto;
+  }
+}
