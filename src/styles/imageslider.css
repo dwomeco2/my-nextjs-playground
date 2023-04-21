@@ -1,0 +1,96 @@
+.image_slider {
+	position: relative;
+	width: 1100px;
+	height: 280px;
+	overflow-x: auto;
+	align-items: center;
+}
+
+.image_slide_item {
+	position: absolute;
+	border-radius: 50%;
+	overflow: hidden;
+	font-size: 2rem;
+	color: white;
+	transition: all 0.25s ease-in;
+}
+
+.carousel-2 {
+	width: 150px;
+	height: 150px;
+	margin-top: 65px;
+	margin-left: 10px;
+}
+
+.carousel-1 {
+	width: 200px;
+	height: 200px;
+	margin-top: 40px;
+	margin-left: 170px;
+}
+
+.carousel0 {
+	width: 250px;
+	height: 250px;
+	margin-top: 15px;
+	margin-left: 380px;
+}
+
+.carousel1 {
+	width: 200px;
+	height: 200px;
+	margin-top: 40px;
+	margin-left: 640px;
+}
+
+.carousel2 {
+	width: 150px;
+	height: 150px;
+	margin-top: 65px;
+	margin-left: 850px;
+}
+
+.ltr-enter {
+	opacity: 0;
+	margin-left: -140px;
+}
+
+.ltr-enter.ltr-enter-active {
+	opacity: 1;
+	margin-left: 10px;
+}
+
+.rtl-enter {
+	opacity: 0;
+	margin-left: 1010px;
+}
+
+.rtl-enter.rtl-enter-active {
+	opacity: 1;
+	margin-left: 850px;
+}
+
+.ltr-exit {
+	opacity: 1;
+	margin-left: 850px;
+}
+
+.ltr-exit.ltr-exit-active {
+	opacity: 0;
+	margin-left: 1010px;
+}
+
+.rtl-exit {
+	opacity: 1;
+	margin-left: 10px;
+}
+
+.rtl-exit.rtl-exit-active {
+	opacity: 0;
+	margin-left: -140px;
+}
+
+.image_slide_item > img {
+	width: 100%;
+	height: 100%;
+}

@@ -24,7 +24,7 @@ export default [
 		pageName: "SidebarComponent",
 		labels: ["react-icons", "tailwind"]
 	} as const,
-	// {name: 'Image Slider', comp: <ImageSlider key={nanoid()}/>, labels: ['react-transition-group', 'tailwind']} as const,
+	{ name: "Image Slider", pageName: "ImageSlider", labels: ["react-transition-group", "tailwind"] } as const,
 	{
 		name: "Masonry layout",
 		pageName: "MasonryLayout",

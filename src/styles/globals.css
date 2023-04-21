@@ -3,6 +3,7 @@
 @import "./masonry.css";
 @import "./pricing.css";
 @import "./sidebar.css";
+@import "./imageslider.css";
 
 @tailwind base;
 @tailwind components;
