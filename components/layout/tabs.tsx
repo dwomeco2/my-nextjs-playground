@@ -29,9 +29,9 @@ export default [
 		name: "Masonry layout",
 		pageName: "MasonryLayout",
 		labels: ["react-image", "intersection observer", "layout animation", "tailwind", "jotai", "view transition"]
-	} as const
+	} as const,
 	// {name: 'Hacker News', comp: <HackerNews key={nanoid()}/>, labels: ['jotai', 'react-query', 'zod', 'intersection observer', 'tailwind']} as const,
 	// {name: 'Library encounterd issues log', comp: <IssuesWithLibrary key={nanoid()}/>, labels: []} as const,
-	// {name: 'TodoList', comp: <TodoList key={nanoid()}/>, labels: ['react-dnd', 'zod', 'react-icons', 'tailwind']} as const,
+	{ name: "TodoList", pageName: "TodoList", labels: ["react-dnd", "zod", "react-icons", "tailwind"] } as const
 	// {name: '2048', comp: <Game2048 key={nanoid()}/>, labels: ['react-spring', 'react-swipeable', 'jotai', 'zod', 'tailwind']} as const,
 ].reverse()
