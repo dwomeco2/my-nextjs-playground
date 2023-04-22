@@ -39,3 +39,26 @@ export const rng = prand.xoroshiro128plus(seed)
 export function randomMinMax(min: number, max: number) {
 	return prand.unsafeUniformIntDistribution(min, max, rng)
 }
+
+/* eslint-disable */
+export const debounce = (fn: Function, ms: number) => {
+	let timeoutId: ReturnType<typeof setTimeout>
+	return function (this: any, ...args: any[]) {
+		clearTimeout(timeoutId)
+		timeoutId = setTimeout(() => fn.apply(this, args), ms)
+	}
+}
+
+export const deepClone = <T>(obj: T): T => JSON.parse(JSON.stringify(obj)) as T
+
+export const sattr = <T, K extends keyof NonNullable<T>, V extends NonNullable<T>[K]>(
+	arr: Array<T>,
+	index: number,
+	attr: K,
+	val: V
+) => {
+	const el = arr[index]
+	if (el) {
+		el[attr] = val as NonNullable<T>[K]
+	}
+}
