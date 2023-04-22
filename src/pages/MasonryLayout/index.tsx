@@ -5,6 +5,7 @@ import FixedLoader from "components/pages/masonry/FixedLoader"
 import Header from "components/pages/masonry/Header"
 import { useAtomValue, useSetAtom } from "jotai"
 import { useRouter } from "next/router"
+import { WithClientOnly } from "~/hooks/ClientOnly"
 import { useAnimatedLayout } from "~/hooks/useAnimatedLayout"
 import useScrollToBottomListener from "~/hooks/useScrollToBottomListener"
 import { default as masonryState } from "~/state/masonry/state"
@@ -74,7 +75,7 @@ const MasonryImage = (image: ImageType) => {
 	)
 }
 
-export default function MasonryLayout() {
+function MasonryLayout() {
 	const [loadingAtom, masonryAtom] = masonryState()
 	const [imagesAtom, addMoreImagesAtom, suffleImagesAtom] = masonryAtom
 
@@ -109,3 +110,5 @@ export default function MasonryLayout() {
 		</div>
 	)
 }
+
+export default WithClientOnly(MasonryLayout)

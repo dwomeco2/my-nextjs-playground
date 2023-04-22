@@ -3,7 +3,7 @@ import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import GithubCorner from "./GithubCorner/index"
 import TagLabel from "./TagLabel"
 import layoutComponent from "./tabs"
@@ -13,6 +13,12 @@ const queryClient = new QueryClient()
 const Menu = () => {
 	const router = useRouter()
 	const [activeLayout, setActiveLayout] = useState(0)
+
+	useEffect(() => {
+		const pathname = router.pathname.split("/")[1]
+		const activeLayoutIndex = layoutComponent.findIndex(c => c.pageName === pathname)
+		setActiveLayout(activeLayoutIndex)
+	}, [router])
 
 	const border = (index: number) => (activeLayout === index ? "border-b-2 border-solid border-b-red-500" : "")
 

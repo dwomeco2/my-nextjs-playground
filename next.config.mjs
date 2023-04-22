@@ -10,7 +10,7 @@ const config = {
 		return [
 			{
 				source: "/",
-				destination: "/MasonryLayout",
+				destination: "/Game2048",
 				permanent: true
 			}
 		]
