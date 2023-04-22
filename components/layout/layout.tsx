@@ -21,7 +21,7 @@ const Menu = () => {
 			{layoutComponent.map(({ name, pageName }, index) => (
 				<Link
 					key={name as string}
-					href={`/${pageName}`}
+					href={`/${pageName ?? ""}`}
 					className={`menu-text inline cursor-pointer select-none p-2 px-4 ${border(index)}`}
 					onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
 						e.preventDefault()

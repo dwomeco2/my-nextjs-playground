@@ -62,3 +62,43 @@ export const sattr = <T, K extends keyof NonNullable<T>, V extends NonNullable<T
 		el[attr] = val as NonNullable<T>[K]
 	}
 }
+
+export function timeAgo(timestamp: number | undefined) {
+	if (timestamp === undefined) {
+		return ""
+	}
+
+	const now = Date.now()
+	return timeDifference(now, timestamp)
+}
+
+function timeDifference(now: number, previous: number) {
+	const seconds = Math.floor(now / 1000 - previous)
+
+	let interval = seconds / 31536000
+	if (interval > 1) {
+		return `${Math.floor(interval)} years`
+	}
+
+	interval = seconds / 2592000
+	if (interval > 1) {
+		return `${Math.floor(interval)} months`
+	}
+
+	interval = seconds / 86400
+	if (interval > 1) {
+		return `${Math.floor(interval)} days`
+	}
+
+	interval = seconds / 3600
+	if (interval > 1) {
+		return `${Math.floor(interval)} hrs`
+	}
+
+	interval = seconds / 60
+	if (interval > 1) {
+		return `${Math.floor(interval)} mins`
+	}
+
+	return `${Math.floor(seconds)} secs`
+}

@@ -1,0 +1,9 @@
+@media screen and (max-width: 490px) {
+  .sideBarList {
+    width: 100%;
+  }
+}
+
+.sideBarList {
+  max-width: 420px;
+}
