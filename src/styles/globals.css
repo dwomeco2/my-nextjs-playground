@@ -10,6 +10,9 @@
 @tailwind utilities;
 
 @layer utilities {
+	.text-fill-transparent {
+		-webkit-text-fill-color: transparent;
+	}
 	/* Chrome, Safari and Opera */
 	.no-scrollbar::-webkit-scrollbar {
 		display: none;

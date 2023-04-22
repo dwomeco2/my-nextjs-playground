@@ -16,13 +16,16 @@ const Menu = () => {
 
 	const border = (index: number) => (activeLayout === index ? "border-b-2 border-solid border-b-red-500" : "")
 
+	const gradientMenu =
+		"text-fill-transparent bg-gradient-to-r from-40% via-70% from-purple-500 via-amber-500 to-pink-500 bg-fixed bg-clip-text hover:brightness-125"
+
 	return (
 		<div className="masked-overflow no-scrollbar component-selector mb-6 flex w-full overflow-x-auto sm:mx-auto sm:w-[524px] md:w-[720px]">
 			{layoutComponent.map(({ name, pageName }, index) => (
 				<Link
 					key={name as string}
 					href={`/${pageName ?? ""}`}
-					className={`menu-text inline cursor-pointer select-none p-2 px-4 ${border(index)}`}
+					className={`${gradientMenu} inline cursor-pointer select-none p-2 px-4 font-semibold ${border(index)}`}
 					onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
 						e.preventDefault()
 						const selfEl = e.target as HTMLAnchorElement

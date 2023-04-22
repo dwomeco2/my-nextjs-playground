@@ -9,5 +9,7 @@ export default {
 			}
 		}
 	},
-	plugins: []
+	plugins: [
+		require("tailwindcss-text-fill-stroke") // no options to configure
+	]
 } satisfies Config
