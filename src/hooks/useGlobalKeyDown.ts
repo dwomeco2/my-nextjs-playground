@@ -2,6 +2,7 @@ import { useEffect } from "react"
 
 export const useGlobalKeyDownEffect = <T>(keys: string[], callbacks: Array<(deps: T[]) => void>, dependencies: T[]) => {
 	const keyDownCallback = (e: KeyboardEvent) => {
+		e.preventDefault()
 		keys.forEach((key, index) => {
 			if (e.key === key) {
 				const el = callbacks[index]

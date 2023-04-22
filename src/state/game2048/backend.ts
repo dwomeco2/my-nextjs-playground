@@ -263,11 +263,7 @@ function spawn(arr: CellsType) {
 		index = Math.floor(Math.random() * 16)
 	} while (arr[index]?.val !== 0)
 
-	const el = arr[index]
-	if (el) {
-		el.val = spawnVal()
-	}
-	// sattr(arr, index, "val", spawnVal())
+	sattr(arr, index, "val", spawnVal())
 
 	return arr
 }
