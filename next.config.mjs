@@ -4,8 +4,25 @@
  */
 !process.env.SKIP_ENV_VALIDATION && (await import("./src/env.mjs"))
 
+const isProd = process.env.NODE_ENV === "production"
+const githubProdConfig = {
+	async redirects() {
+		return [
+			{
+				source: "/",
+				destination: "/Game2048",
+				permanent: true
+			}
+		]
+	},
+	assetPrefix: isProd ? "/your-github-repo-name/" : "",
+	images: {
+		unoptimized: true
+	}
+}
+
 /** @type {import("next").NextConfig} */
-const config = {
+const defaultConfig = {
 	async redirects() {
 		return [
 			{
@@ -43,4 +60,6 @@ const config = {
 		defaultLocale: "en"
 	}
 }
+
+const config = isProd ? githubProdConfig : defaultConfig
 export default config
