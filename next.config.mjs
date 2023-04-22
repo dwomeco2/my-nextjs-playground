@@ -15,6 +15,7 @@ const githubProdConfig = {
 			}
 		]
 	},
+	basePath: "/my-nextjs-playground",
 	assetPrefix: isProd ? "/my-nextjs-playground/" : "",
 	images: {
 		unoptimized: true
