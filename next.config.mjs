@@ -11,14 +11,7 @@ const githubProdConfig = {
 		return [
 			{
 				source: "/",
-				destination: "/my-nextjs-playground/Game2048",
-				basePath: false,
-				permanent: false
-			},
-			{
-				source: "/my-nextjs-playground",
-				destination: "/my-nextjs-playground/Game2048",
-				basePath: false,
+				destination: "/Game2048",
 				permanent: false
 			}
 		]
