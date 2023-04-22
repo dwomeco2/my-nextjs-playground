@@ -17,7 +17,7 @@ const Menu = () => {
 	const border = (index: number) => (activeLayout === index ? "border-b-2 border-solid border-b-red-500" : "")
 
 	const gradientMenu =
-		"text-fill-transparent bg-gradient-to-r from-40% via-70% from-purple-500 via-amber-500 to-pink-500 bg-fixed bg-clip-text hover:brightness-125"
+		"text-fill-transparent bg-gradient-to-r from-35% via-55% to-65% from-purple-500 via-amber-500 to-pink-500 bg-fixed bg-clip-text hover:brightness-125"
 
 	return (
 		<div className="masked-overflow no-scrollbar component-selector mb-6 flex w-full overflow-x-auto sm:mx-auto sm:w-[524px] md:w-[720px]">
