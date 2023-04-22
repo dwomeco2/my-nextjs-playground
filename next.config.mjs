@@ -15,7 +15,7 @@ const githubProdConfig = {
 			}
 		]
 	},
-	assetPrefix: isProd ? "/your-github-repo-name/" : "",
+	assetPrefix: isProd ? "/my-nextjs-playground/" : "",
 	images: {
 		unoptimized: true
 	}
