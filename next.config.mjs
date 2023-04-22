@@ -5,17 +5,25 @@
 !process.env.SKIP_ENV_VALIDATION && (await import("./src/env.mjs"))
 
 const isProd = process.env.NODE_ENV === "production"
+
 const githubProdConfig = {
 	async redirects() {
 		return [
 			{
 				source: "/",
-				destination: "/Game2048",
-				permanent: true
+				destination: "/my-nextjs-playground/Game2048",
+				basePath: false,
+				permanent: false
+			},
+			{
+				source: "/my-nextjs-playground",
+				destination: "/my-nextjs-playground/Game2048",
+				basePath: false,
+				permanent: false
 			}
 		]
 	},
-	basePath: "/my-nextjs-playground",
+	basePath: isProd ? "/my-nextjs-playground" : "",
 	assetPrefix: isProd ? "/my-nextjs-playground/" : "",
 	images: {
 		unoptimized: true
@@ -29,7 +37,7 @@ const defaultConfig = {
 			{
 				source: "/",
 				destination: "/Game2048",
-				permanent: true
+				permanent: false
 			}
 		]
 	},
