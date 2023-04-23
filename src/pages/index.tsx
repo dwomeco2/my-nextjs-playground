@@ -7,5 +7,5 @@ export default function Index() {
 		void router.push("/Game2048")
 	}, [router])
 
-	return null
+	return <div></div>
 }
