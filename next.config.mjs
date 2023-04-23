@@ -7,33 +7,6 @@
 const isProd = process.env.NODE_ENV === "production"
 
 const githubProdConfig = {
-	async redirects() {
-		return [
-			{
-				source: "/",
-				destination: "/Game2048",
-				permanent: false
-			},
-			{
-				source: "/",
-				destination: "/my-nextjs-playground/Game2048",
-				basePath: false,
-				permanent: false
-			},
-			{
-				source: "/my-nextjs-playground",
-				destination: "/my-nextjs-playground/Game2048",
-				basePath: false,
-				permanent: false
-			},
-			{
-				source: "/my-nextjs-playground/",
-				destination: "/my-nextjs-playground/Game2048",
-				basePath: false,
-				permanent: false
-			}
-		]
-	},
 	basePath: isProd ? "/my-nextjs-playground" : "",
 	assetPrefix: isProd ? "/my-nextjs-playground/" : "",
 	images: {
