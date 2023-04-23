@@ -19,7 +19,12 @@ const Menu = () => {
 		const pathname = router.pathname.split("/")[1]
 		const activeLayoutIndex = layoutComponent.findIndex(c => c.pageName === pathname)
 		setActiveLayout(activeLayoutIndex)
-	}, [router])
+		const el = document.querySelector(`.menu-${activeLayout}`)
+		if (el) {
+			const selfEl = el as HTMLAnchorElement
+			selfEl.scrollIntoView({ behavior: "smooth", inline: "center" })
+		}
+	}, [router, activeLayout])
 
 	const border = (index: number) => (activeLayout === index ? "border-b-2 border-solid border-b-red-500" : "")
 
@@ -36,21 +41,19 @@ const Menu = () => {
 				<Link
 					key={name as string}
 					href={`/${pageName ?? ""}`}
-					className={`${menuStyle} cursor-pointer select-none p-2 px-4 font-semibold ${border(index)}`}
+					className={`menu-${index} ${menuStyle} cursor-pointer select-none p-2 px-4 font-semibold ${border(index)}`}
 					onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
 						e.preventDefault()
 						const selfEl = e.target as HTMLAnchorElement
 						selfEl.scrollIntoView({ behavior: "smooth", inline: "center" })
 						setActiveLayout(index)
 						if ("startViewTransition" in document) {
-							console.log("has startViewTransition")
 							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 							// @ts-ignore
 							document.startViewTransition(async () => {
 								await router.push(selfEl.href)
 							})
 						} else {
-							console.log("has no startViewTransition")
 							void router.push(selfEl.href)
 						}
 					}}
