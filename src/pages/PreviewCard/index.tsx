@@ -4,8 +4,8 @@ import styles from "./index.module.css"
 
 export default function PreviewCardComponent() {
 	return (
-		<div className="relative mb-8">
-			<div className="grid grid-cols-[repeat(auto-fit,_minmax(18rem,_1fr))] place-items-center gap-4">
+		<div className="relative my-8">
+			<div className="flex flex-wrap place-items-center justify-center gap-4">
 				{[1, 2, 3, 4, 5, 6].map(n => {
 					const src = randomSeedImageSrc(`preview-${n}`, 288, 208)
 					return (
@@ -43,10 +43,8 @@ export default function PreviewCardComponent() {
 								</button>
 							</div>
 							{/* Weird bug, when ever h is set to some number, view transition will stretch the entire page */}
-							<div className="relative flex-1 bg-[#2f4f4f]">
-								<div className="h-full w-full">
-									<Image className="object-cover" alt="preview images" src={src} fill />
-								</div>
+							<div className="relative h-52 bg-[#2f4f4f]">
+								<Image className="object-cover" alt="preview images" src={src} width={288} height={208} />
 							</div>
 							<div className="p-2 text-start">
 								<div className="mb-0 font-medium">Flores</div>

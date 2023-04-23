@@ -43,12 +43,14 @@ const Menu = () => {
 						selfEl.scrollIntoView({ behavior: "smooth", inline: "center" })
 						setActiveLayout(index)
 						if ("startViewTransition" in document) {
+							console.log("has startViewTransition")
 							// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 							// @ts-ignore
 							document.startViewTransition(async () => {
 								await router.push(selfEl.href)
 							})
 						} else {
+							console.log("has no startViewTransition")
 							void router.push(selfEl.href)
 						}
 					}}
