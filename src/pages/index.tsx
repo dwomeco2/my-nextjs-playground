@@ -1,11 +1,10 @@
-import Head from "next/head"
+import Layout from "components/layout/layout"
+import Game2048 from "./Game2048"
 
 export default function Index() {
 	return (
-		<div>
-			<Head>
-				<meta http-equiv="Refresh" content="0; url='https://dwomeco2.github.io/my-nextjs-playground/Game2048'" />
-			</Head>
-		</div>
+		<Layout>
+			<Game2048 />
+		</Layout>
 	)
 }
