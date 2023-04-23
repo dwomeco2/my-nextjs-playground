@@ -14,6 +14,7 @@ const queryClient = new QueryClient()
 const Menu = () => {
 	const router = useRouter()
 	const [activeLayout, setActiveLayout] = useState(0)
+	const [menuStyle, setMenuStyle] = useState("text-white")
 
 	useEffect(() => {
 		const pathname = router.pathname.split("/")[1]
@@ -33,7 +34,10 @@ const Menu = () => {
 
 	const defaultMenu = "text-white"
 
-	const menuStyle = isSafari || isIOS ? defaultMenu : gradientMenu
+	useEffect(() => {
+		//only work when it is mounted
+		setMenuStyle(isSafari || isIOS ? defaultMenu : gradientMenu)
+	}, [])
 
 	return (
 		<div className="masked-overflow no-scrollbar component-selector mb-6 flex w-full overflow-x-auto sm:mx-auto sm:w-[524px] md:w-[720px]">
@@ -41,7 +45,9 @@ const Menu = () => {
 				<Link
 					key={name as string}
 					href={`/${pageName ?? ""}`}
-					className={`menu-${index} ${menuStyle} cursor-pointer select-none p-2 px-4 font-semibold ${border(index)}`}
+					className={`menu-${index} ${menuStyle} cursor-pointer select-none p-2 px-4 font-semibold text-white ${border(
+						index
+					)}`}
 					onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
 						e.preventDefault()
 						const selfEl = e.target as HTMLAnchorElement
