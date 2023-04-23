@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
+import { isIOS, isSafari } from "react-device-detect"
 import GithubCorner from "./GithubCorner/index"
 import TagLabel from "./TagLabel"
 import layoutComponent from "./tabs"
@@ -25,13 +26,17 @@ const Menu = () => {
 	const gradientMenu =
 		"inline-block text-fill-transparent bg-gradient-to-r from-35% via-55% to-65% from-purple-500 via-amber-500 to-pink-500 bg-fixed bg-clip-text hover:brightness-125"
 
+	const defaultMenu = "text-white"
+
+	const menuStyle = isSafari || isIOS ? defaultMenu : gradientMenu
+
 	return (
 		<div className="masked-overflow no-scrollbar component-selector mb-6 flex w-full overflow-x-auto sm:mx-auto sm:w-[524px] md:w-[720px]">
 			{layoutComponent.map(({ name, pageName }, index) => (
 				<Link
 					key={name as string}
 					href={`/${pageName ?? ""}`}
-					className={`${gradientMenu} cursor-pointer select-none p-2 px-4 font-semibold ${border(index)}`}
+					className={`${menuStyle} cursor-pointer select-none p-2 px-4 font-semibold ${border(index)}`}
 					onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
 						e.preventDefault()
 						const selfEl = e.target as HTMLAnchorElement
