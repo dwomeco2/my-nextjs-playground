@@ -102,7 +102,7 @@ function ImageSlider() {
 
 	return (
 		<div className="relative mt-16 w-full">
-			<div className="absolute-center-xy mt-[120px] flex w-[600px] scale-50 justify-center transition-all xs:scale-75 sm:w-[720px] sm:scale-100">
+			<div className="absolute-center-xy mt-[120px] flex w-[720px] scale-50 justify-center transition-all xs:scale-75 sm:w-[720px] sm:scale-100">
 				<TransitionGroup
 					className="image_slider no-scrollbar overflow-hidden"
 					// The exiting component is already detached and therefore does not get any updates.

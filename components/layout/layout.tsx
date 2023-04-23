@@ -23,7 +23,7 @@ const Menu = () => {
 	const border = (index: number) => (activeLayout === index ? "border-b-2 border-solid border-b-red-500" : "")
 
 	const gradientMenu =
-		"text-fill-transparent bg-gradient-to-r from-35% via-55% to-65% from-purple-500 via-amber-500 to-pink-500 bg-fixed bg-clip-text hover:brightness-125"
+		"inline-block text-fill-transparent bg-gradient-to-r from-35% via-55% to-65% from-purple-500 via-amber-500 to-pink-500 bg-fixed bg-clip-text hover:brightness-125"
 
 	return (
 		<div className="masked-overflow no-scrollbar component-selector mb-6 flex w-full overflow-x-auto sm:mx-auto sm:w-[524px] md:w-[720px]">
@@ -31,7 +31,7 @@ const Menu = () => {
 				<Link
 					key={name as string}
 					href={`/${pageName ?? ""}`}
-					className={`${gradientMenu} inline cursor-pointer select-none p-2 px-4 font-semibold ${border(index)}`}
+					className={`${gradientMenu} cursor-pointer select-none p-2 px-4 font-semibold ${border(index)}`}
 					onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
 						e.preventDefault()
 						const selfEl = e.target as HTMLAnchorElement
@@ -43,6 +43,8 @@ const Menu = () => {
 							document.startViewTransition(async () => {
 								await router.push(selfEl.href)
 							})
+						} else {
+							void router.push(selfEl.href)
 						}
 					}}
 				>
@@ -55,7 +57,7 @@ const Menu = () => {
 
 const Background = () => {
 	return (
-		<div className="absolute -z-50 h-full w-full bg-gradient-to-br from-[#1c4543] to-[#362b3d]">
+		<div className="background absolute -z-50 h-screen w-full bg-gradient-to-br from-[#1c4543] to-[#362b3d]">
 			<Image src="bg-pattern.svg" fill alt="bg-pattern" className="object-cover opacity-10" />
 		</div>
 	)

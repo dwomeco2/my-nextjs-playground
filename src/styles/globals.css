@@ -92,23 +92,29 @@
 	}
 }
 
-html {
-	height: -webkit-fill-available;
+:root {
+	--doc-height: 100%;
 }
 
+html,
 body {
-	width: 100%;
-	min-height: 100vh;
-	overflow: hidden;
-	/* mobile viewport bug fix */
-	min-height: -webkit-fill-available;
+	padding: 0;
+	margin: 0;
+	height: 100vh;
+	height: var(--doc-height);
+}
+
+.background {
+	min-height: var(--doc-height);
 }
 
 ::view-transition-old(page) {
+	contain: paint;
 	animation: 300ms ease-out both full-slide-to-left, 300ms ease-out both fade-out;
 }
 
 ::view-transition-new(page) {
+	contain: paint;
 	animation: 300ms ease-out both full-slide-from-right 250ms, 300ms ease-out both fade-in 250ms;
 }
 
